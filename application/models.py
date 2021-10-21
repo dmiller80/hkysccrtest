@@ -150,6 +150,9 @@ class Match(models.Model):
         default=timezone.now)
     updated_date = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        verbose_name_plural = "Matches"
+
     def created(self):
         self.created_date = timezone.now()
         self.save()

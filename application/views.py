@@ -16,3 +16,10 @@ def team_list(request):
     team = Team.objects.filter(created_date__lte=timezone.now())
     return render(request, 'team_list.html',
                  {'teams': team})
+
+@login_required
+def player_list(request):
+    player = Player.objects.filter(created_date__lte=timezone.now())
+
+    return render(request, 'player_list.html',
+                 {'players': player})
