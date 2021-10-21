@@ -16,6 +16,20 @@ class MatchForm(forms.ModelForm):
                   'match_notes',
                   'match_players_goals_scored',)
 
+class PlayerForm(forms.ModelForm):
+    class Meta:
+        model = Player
+        fields = (
+                  'team',
+                  'first_name',
+                  'last_name',
+                  'address',
+                  'city',
+                  'state',
+                  'zipcode',
+                  'email',
+                  'phone', 'eligibility',)
+
 class ModelForm(forms.ModelForm):
     class Meta:
         model = Match

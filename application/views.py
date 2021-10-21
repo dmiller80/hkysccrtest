@@ -19,6 +19,22 @@ def team_list(request):
     team = Team.objects.filter(created_date__lte=timezone.now())
     return render(request, 'team_list.html',
                  {'teams': team})
+@login_required
+def player_new(request):
+    if request.method == "POST":
+        form = PlayerForm(request.POST)
+        if form.is_valid():
+            player = form.save(commit=False)
+            player.created_date = timezone.now()
+            player.save()
+            players = Player.objects.filter(created_date__lte=timezone.now())
+
+            return render(request, 'player_list.html',
+                         {'players': players})
+    else:
+        form = PlayerForm()
+        # print("Else")
+    return render(request, 'player_new.html', {'form': form})
 
 @login_required
 def player_list(request):
@@ -26,6 +42,25 @@ def player_list(request):
 
     return render(request, 'player_list.html',
                  {'players': player})
+
+@login_required
+def player_edit(request, pk):
+    player = get_object_or_404(Player, pk=pk)
+    if request.method == "POST":
+        form = PlayerForm(request.POST, instance=player)
+        if form.is_valid():
+            player = form.save()
+
+            player.updated_date = timezone.now()
+            player.save()
+            # players = Player.objects.filter(referee_uid=request.user)
+            players = Player.objects.filter(created_date__lte=timezone.now())
+            return render(request, 'player_list.html', {'players': players})
+    else:
+        print("else")
+
+        form = PlayerForm(instance=player)
+    return render(request, 'player_edit.html', {'form': form})
 
 @login_required
 def match_edit(request, pk):
