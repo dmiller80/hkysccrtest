@@ -34,7 +34,7 @@
                     <td>{{match.guest_team_score}}</td>
                     <td>{{match.match_notes}}</td>
                     <td>{{match.match_players_goals_scored}}</td>
-                    <td><a href="" class="btn btn-warning">Edit</a>
+                    <td><a href="{% url 'application:match_edit' pk=match.id %}" class="btn btn-warning">Edit</a>
                     <td><a href=""
                            onclick="return confirm('Are you sure you want to delete?')"
                            class="btn btn-danger">Delete</a>

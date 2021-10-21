@@ -140,6 +140,7 @@ class Match(models.Model):
     guest_team = models.ForeignKey(Team, on_delete=models.DO_NOTHING, related_name='guest_team')
     field = models.ForeignKey(Field, on_delete=models.DO_NOTHING, related_name='field')
     referee = models.ForeignKey(Referee, on_delete=models.DO_NOTHING, related_name='referee')
+    referee_uid = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING, default=1)
     start_time = models.DateTimeField(default=timezone.now)
     home_team_score = models.IntegerField(default=0)
     guest_team_score = models.IntegerField(default=0)
