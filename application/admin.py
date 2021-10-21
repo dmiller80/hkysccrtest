@@ -27,7 +27,7 @@ class SchoolList(admin.ModelAdmin):
 
 
 class TeamList(admin.ModelAdmin):
-    list_display = ('school', 'name', 'coach', 'coach_phone')
+    list_display = ('name', 'school', 'coach', 'coach_phone')
     list_filter = ('school', 'name')
     search_fields = ('school', 'name')
     ordering = ['school']
