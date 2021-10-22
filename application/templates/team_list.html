@@ -22,11 +22,7 @@
                     <td>{{team.school}}</td>
                     <td>{{team.name}}</td>
                     <td>{{team.coach}}</td>
-                    <td><a href="" class="btn btn-warning">Edit</a>
-                    <td><a href=""
-                           onclick="return confirm('Are you sure you want to delete?')"
-                           class="btn btn-danger">Delete</a>
-                    </td>
+                    <td><a href="{% url 'application:team_edit' pk=team.pk %}" class="btn btn-warning">Edit</a>
                 </tr>
             {% endfor %}
             </tbody>

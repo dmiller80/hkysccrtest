@@ -53,7 +53,7 @@ class Referee(models.Model):
         self.save()
 
     def __str__(self):
-        return str(self.first_name)
+        return str(self.first_name + " " + self.last_name)
 
 
 class School(models.Model):

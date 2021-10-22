@@ -23,7 +23,7 @@
                     <td>{{player.last_name}}</td>
                     <td>{{player.city}}</td>
                     <td><a href="{% url 'application:player_edit' pk=player.pk %}" class="btn btn-warning">Edit</a>
-                    <td><a href=""
+                    <td><a href="{% url 'application:player_delete' pk=player.pk %}"
                            onclick="return confirm('Are you sure you want to delete?')"
                            class="btn btn-danger">Delete</a>
                     </td>

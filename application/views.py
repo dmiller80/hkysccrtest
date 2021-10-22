@@ -19,6 +19,30 @@ def team_list(request):
     team = Team.objects.filter(coach_uid=request.user)
     return render(request, 'team_list.html',
                  {'teams': team})
+
+@login_required
+def team_edit(request, pk):
+    team = get_object_or_404(Team, pk=pk)
+    if request.method == "POST":
+        form = TeamForm(request.POST, instance=team)
+        if form.is_valid():
+            team = form.save()
+
+            team.updated_date = timezone.now()
+            team.save()
+            teams = Team.objects.filter(coach_uid=request.user)
+            return render(request, 'team_list.html', {'teams': teams})
+    else:
+        print("else")
+        form = TeamForm(instance=team)
+    return render(request, 'team_edit.html', {'form': form})
+
+@login_required
+def player_delete(request, pk):
+    player = get_object_or_404(Player, pk=pk)
+    player.delete()
+    return redirect('application:player_list')
+
 @login_required
 def player_new(request):
     if request.method == "POST":
